@@ -1,0 +1,23 @@
+---
+import { services, servicesIntro } from "../content";
+import SectionIntro from "./SectionIntro.astro";
+import ServiceCard from "./ServiceCard.astro";
+---
+
+<section class="services wrap" id="services">
+  <SectionIntro {...servicesIntro} />
+  <div class="grid">
+    {services.map((s) => <ServiceCard {...s} />)}
+  </div>
+</section>
+
+<style>
+  .services {
+    padding-bottom: var(--section-gap);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    scroll-margin-top: 24px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,440px),1fr)); gap: 20px; }
+</style>

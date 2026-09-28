@@ -1,0 +1,88 @@
+/* Sochana — global tokens, base styles and shared helpers.
+   Tokens are copied from the Sochana design system (project/_ds/…/tokens).
+   Component-specific styles live in each component's <style> block. */
+
+:root {
+  /* Ink — navy neutrals */
+  --ink-1000:#0a1118;--ink-950:#0d151e;--ink-900:#111a24;--ink-850:#172734;--ink-800:#1d2f3e;--ink-700:#283d4f;--ink-600:#3a5064;--ink-500:#56697c;--ink-400:#6a7683;--ink-300:#95a1ae;--ink-200:#c3ccd5;--ink-150:#dbe2e8;--ink-100:#e9eef3;--ink-50:#f1f5f8;--white:#ffffff;
+  /* Trace teal */
+  --teal-900:#0f3a32;--teal-800:#155246;--teal-700:#1f7a67;--teal-600:#2aa58a;--teal-500:#3bc6a7;--teal-400:#62d4bb;--teal-300:#93e2d0;--teal-100:#d6f4ec;--teal-50:#ecfaf6;
+  /* Signal colours (used in the animated tiles) */
+  --amber-300:#f0cb87;
+  --blue-900:#16283a;--blue-700:#2f6aa3;--blue-500:#5b9bd5;--blue-300:#9dc3e8;
+
+  /* Semantic */
+  --text-strong:var(--ink-900);--text-body:#2a3a49;--text-muted:var(--ink-500);--text-accent:var(--teal-700);
+  --border-subtle:var(--ink-150);--border-default:var(--ink-200);
+  --action-primary:var(--ink-900);--action-primary-hover:var(--ink-800);--action-primary-press:var(--ink-1000);--action-primary-text:var(--ink-50);
+
+  --shadow-3:0 12px 32px -8px rgba(17,26,36,.22),0 0 0 1px rgba(17,26,36,.08);
+  --shadow-focus:0 0 0 2px var(--white),0 0 0 4px var(--teal-500);
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --dur-fast:120ms;
+
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --font-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --radius-s:4px;--radius-m:6px;--radius-l:10px;--radius-xl:16px;
+
+  /* Page rhythm (the design scales these with page width) */
+  --pad-x:clamp(20px,2vw,24px);
+  --section-gap:clamp(72px,8vw,120px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-body);
+  background: var(--ink-50);
+}
+
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; }
+h1, h2, h3, p { margin: 0; }
+::selection { background: var(--teal-300); color: var(--ink-900); }
+
+:focus-visible { outline: none; box-shadow: var(--shadow-focus); border-radius: var(--radius-s); }
+
+/* ---------- Shared helpers ---------- */
+
+/* 1200px content column */
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: var(--pad-x); padding-right: var(--pad-x); }
+
+/* Tracked mono label, e.g. "01 · ASSESS" */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes sx-a {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(40px,-30px) scale(1.18); }
+  100% { transform: translate(-30px,20px) scale(.92); }
+}
+@keyframes sx-b {
+  0%   { transform: translate(0,0) scale(1.05); }
+  50%  { transform: translate(-50px,30px) scale(.9); }
+  100% { transform: translate(30px,-40px) scale(1.2); }
+}
+@keyframes sx-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; }
+}

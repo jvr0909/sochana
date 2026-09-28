@@ -1,0 +1,47 @@
+---
+// Slowly drifting, blurred colour behind the navy tiles. Stops under prefers-reduced-motion.
+// Place inside a positioned container; it fills it.
+
+/** A colour blob: colour token, size (px), left, top, drift duration (s), and which drift path to use. */
+export type Blob = { color: string; size: number; x: string; y: string; duration: number; path?: "a" | "b" };
+
+interface Props {
+  blobs: Blob[];
+}
+
+const { blobs } = Astro.props;
+---
+
+<div class="aurora" aria-hidden="true">
+  {
+    blobs.map((b, i) => (
+      <span
+        style={{
+          "--c": `var(${b.color})`,
+          "--s": `${b.size}px`,
+          "--x": b.x,
+          "--y": b.y,
+          "--d": `${b.duration}s`,
+          "--delay": `${-i * 2}s`,
+          "--path": `sx-${b.path ?? "a"}`,
+        }}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .aurora { position: absolute; inset: 0; overflow: hidden; background: var(--ink-900); }
+  span {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--s);
+    height: var(--s);
+    border-radius: 50%;
+    background: var(--c);
+    filter: blur(48px);
+    opacity: .95;
+    animation: var(--path) var(--d) ease-in-out var(--delay) infinite alternate;
+  }
+</style>

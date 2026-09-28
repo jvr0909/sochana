@@ -1,0 +1,27 @@
+---
+import BuiltFor from "../components/BuiltFor.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Services from "../components/Services.astro";
+import Tiles from "../components/Tiles.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Sochana · Fraud dispute consulting"
+  description="Stop losing money to fraud disputes. Chargebacks, friendly fraud and first-party claims, traced to the source and fought with evidence."
+>
+  <Header />
+  <main>
+    <Hero />
+    <Tiles />
+    <Services />
+    <HowItWorks />
+    <BuiltFor />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

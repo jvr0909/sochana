@@ -1,0 +1,61 @@
+---
+// DS form field (size l): a label above an input, select or textarea.
+import { ChevronDown } from "@lucide/astro";
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"input"> &
+  HTMLAttributes<"textarea"> & {
+    label: string;
+    as?: "input" | "select" | "textarea";
+    options?: string[];
+  };
+
+const { label, as = "input", options = [], ...rest } = Astro.props;
+---
+
+<label class="field">
+  <span class="label">{label}</span>
+  {as === "input" && <input class="control" {...rest} />}
+  {
+    as === "select" && (
+      <span class="select">
+        <select class="control" {...rest}>
+          {options.map((o) => (
+            <option>{o}</option>
+          ))}
+        </select>
+        <span class="chevron">
+          <ChevronDown size={14} aria-hidden="true" />
+        </span>
+      </span>
+    )
+  }
+  {as === "textarea" && <textarea class="control" {...rest} />}
+</label>
+
+<style>
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .label { font-size: 13px; font-weight: 500; color: var(--text-strong); }
+
+  .control {
+    width: 100%;
+    height: 46px;
+    padding: 0 12px;
+    background: var(--white);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-m);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-strong);
+    outline: 0;
+    transition: box-shadow var(--dur-fast), border-color var(--dur-fast);
+  }
+  .control::placeholder { color: var(--text-muted); }
+  .control:focus { border-color: var(--ink-900); box-shadow: 0 0 0 3px var(--teal-100); border-radius: var(--radius-m); }
+
+  textarea.control { height: auto; padding: 12px; line-height: 1.55; resize: vertical; }
+
+  .select { position: relative; display: flex; }
+  select.control { appearance: none; -webkit-appearance: none; padding-right: 34px; cursor: pointer; }
+  .chevron { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--ink-500); }
+</style>

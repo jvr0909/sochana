@@ -1,0 +1,131 @@
+---
+// Booking request form. Set PUBLIC_FORM_ENDPOINT (e.g. a Formspree URL) in .env to deliver
+// submissions; without it, submitting only shows the confirmation, as in the design.
+import { contact } from "../content";
+import Button from "./ui/Button.astro";
+import Field from "./ui/Field.astro";
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? "";
+const [defaultConcern] = contact.concerns;
+---
+
+<form class="panel form" id="booking-form" data-endpoint={endpoint}>
+  <h3>Tell us what you're seeing</h3>
+
+  <div class="grid">
+    <Field label="Full name" name="name" placeholder="Alex Morgan" autocomplete="name" required />
+    <Field label="Work email" name="email" type="email" placeholder="alex@company.com" autocomplete="email" required />
+    <Field label="Company" name="company" placeholder="Northwind Pay" autocomplete="organization" />
+    <Field label="Role" name="role" as="select" options={contact.roles} />
+  </div>
+
+  <fieldset>
+    <legend>Main fraud concern</legend>
+    <input type="hidden" name="concern" value={defaultConcern} />
+    <div class="chips">
+      {contact.concerns.map((c) => <button type="button" class="chip" aria-pressed={c === defaultConcern ? "true" : "false"}>{c}</button>)}
+    </div>
+  </fieldset>
+
+  <Field
+    label="Message"
+    name="message"
+    as="textarea"
+    rows={4}
+    placeholder="e.g. Chargebacks up 3× since March, mostly 'item not received' claims from repeat customers. Our dispute rate is 0.8%."
+  />
+
+  <Button type="submit" size="l" fullWidth>Request a consultation</Button>
+  <span class="note">Personal reply within one business day</span>
+</form>
+
+<div class="panel sent" id="booking-sent" hidden role="status" tabindex="-1">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="title">Request received.</span>
+  <p>You'll get a personal reply within one business day with a few times for your call.</p>
+  <div><Button variant="secondary" id="booking-reset">Send another</Button></div>
+</div>
+
+<script>
+  const form = document.getElementById("booking-form") as HTMLFormElement;
+  const sent = document.getElementById("booking-sent") as HTMLElement;
+  const concern = form.elements.namedItem("concern") as HTMLInputElement;
+  const chips = [...form.querySelectorAll<HTMLButtonElement>(".chip")];
+
+  function selectChip(chip: HTMLButtonElement) {
+    chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+    concern.value = chip.textContent ?? "";
+  }
+
+  chips.forEach((chip) => chip.addEventListener("click", () => selectChip(chip)));
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const endpoint = form.dataset.endpoint;
+    if (endpoint) {
+      const submit = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+      submit.disabled = true;
+      try {
+        const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        if (!res.ok) throw new Error(res.statusText);
+      } catch {
+        alert("Sorry, your request could not be sent. Please try again.");
+        return;
+      } finally {
+        submit.disabled = false;
+      }
+    }
+    form.hidden = true;
+    sent.hidden = false;
+    sent.focus();
+  });
+
+  document.getElementById("booking-reset")!.addEventListener("click", () => {
+    form.reset();
+    selectChip(chips[0]);
+    sent.hidden = true;
+    form.hidden = false;
+  });
+</script>
+
+<style>
+  .panel {
+    height: 100%;
+    background: var(--white);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+  }
+  [hidden] { display: none; }
+
+  /* Form */
+  .form { padding: clamp(22px,2.5vw,36px); display: flex; flex-direction: column; gap: 20px; }
+  h3 { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--text-strong); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,220px),1fr)); gap: 16px; }
+
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { padding: 0; margin-bottom: 10px; font-size: 13px; font-weight: 500; color: var(--text-strong); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border-default);
+    background: var(--white);
+    color: var(--text-body);
+    cursor: pointer;
+    transition: background var(--dur-fast), border-color var(--dur-fast);
+  }
+  .chip[aria-pressed="true"] { border-color: var(--ink-900); background: var(--ink-900); color: var(--ink-50); }
+  .chip:focus-visible { border-radius: 999px; }
+
+  .note { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; }
+
+  /* Confirmation */
+  .sent { padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .sent[hidden] { display: none; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--teal-500); }
+  .title { font-family: var(--font-mono); font-size: 26px; font-weight: 500; color: var(--text-strong); }
+  .sent p { font-size: 16px; line-height: 1.6; color: var(--text-body); }
+</style>

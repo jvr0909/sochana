@@ -1,0 +1,24 @@
+---
+// A navy picture tile with a caption underneath. The tile's artwork goes in the slot.
+interface Props {
+  eyebrow: string;
+  caption: string;
+}
+
+const { eyebrow, caption } = Astro.props;
+---
+
+<div class="tile">
+  <div class="art"><slot /></div>
+  <div class="caption">
+    <span class="eyebrow">{eyebrow}</span>
+    <strong>{caption}</strong>
+  </div>
+</div>
+
+<style>
+  .tile { display: flex; flex-direction: column; gap: 18px; }
+  .art { position: relative; height: 420px; border-radius: var(--radius-xl); overflow: hidden; background: var(--ink-900); }
+  .caption { display: flex; flex-direction: column; gap: 6px; padding: 0 4px; }
+  strong { font-size: 18px; font-weight: 600; line-height: 1.45; color: var(--text-strong); }
+</style>
