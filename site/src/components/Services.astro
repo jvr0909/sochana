@@ -7,7 +7,7 @@ import ServiceCard from "./ServiceCard.astro";
 <section class="services wrap" id="services">
   <SectionIntro {...servicesIntro} />
   <div class="grid">
-    {services.map((s) => <ServiceCard {...s} />)}
+    {services.map((s, i) => <ServiceCard {...s} index={i} />)}
   </div>
 </section>
 

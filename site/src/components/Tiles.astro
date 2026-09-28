@@ -6,11 +6,11 @@ import RespondTile from "./tiles/RespondTile.astro";
 ---
 
 <section class="tiles-section wrap">
-  <h2>{tilesTitle}</h2>
+  <h2 data-reveal>{tilesTitle}</h2>
   <div class="tiles">
-    <AssessTile />
-    <PreventTile />
-    <RespondTile />
+    <div data-reveal style="--i: 0"><AssessTile /></div>
+    <div data-reveal style="--i: 1"><PreventTile /></div>
+    <div data-reveal style="--i: 2"><RespondTile /></div>
   </div>
 </section>
 
