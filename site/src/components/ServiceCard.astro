@@ -2,14 +2,14 @@
 import { Check, Compass, FileCheck, Search, ShieldCheck } from "@lucide/astro";
 import type { Service } from "../content";
 
-type Props = Service;
+type Props = Service & { index: number };
 
 const icons = { search: Search, "shield-check": ShieldCheck, "file-check": FileCheck, compass: Compass };
-const { icon, eyebrow, title, body, gets } = Astro.props;
+const { icon, eyebrow, title, body, gets, index } = Astro.props;
 const Icon = icons[icon];
 ---
 
-<article class="service">
+<article class="service" data-reveal style={{ "--i": index % 2 }}>
   <div class="icon"><Icon size={20} aria-hidden="true" /></div>
   <div class="body">
     <span class="eyebrow">{eyebrow}</span>
