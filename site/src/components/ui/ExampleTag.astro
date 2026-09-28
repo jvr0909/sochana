@@ -1,0 +1,24 @@
+---
+// Marks illustrative figures as examples, not client results. Same look on light and dark cards.
+---
+
+<span class="example-tag"><slot /></span>
+
+<style>
+  .example-tag {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: var(--radius-s);
+    background: var(--ink-100);
+    color: var(--ink-600);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+</style>

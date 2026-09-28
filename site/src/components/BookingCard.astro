@@ -2,6 +2,7 @@
 // The animated navy card beside the hero headline.
 import { hero } from "../content";
 import Aurora from "./ui/Aurora.astro";
+import ExampleTag from "./ui/ExampleTag.astro";
 
 const { sample, card } = hero;
 ---
@@ -19,6 +20,7 @@ const { sample, card } = hero;
 
   <div class="top">
     <div class="sample" aria-hidden="true">
+      <ExampleTag>{sample.tag}</ExampleTag>
       <span class="sample-label">{sample.label}</span>
       <span class="sample-value">{sample.value}</span>
       <div class="bars">

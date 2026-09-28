@@ -1,14 +1,17 @@
 ---
 import Button from "./ui/Button.astro";
+
+// On other pages (e.g. /privacy) the section links point back to the home page
+const home = Astro.url.pathname === "/" ? "" : "/";
 ---
 
 <header class="site-header wrap" id="top">
-  <a href="#top" class="logo"><img src="/logo-lockup-on-light.png" alt="Sochana" width="610" height="130" /></a>
+  <a href={home ? "/" : "#top"} class="logo"><img src="/logo-lockup-on-light.png" alt="Sochana" width="610" height="130" /></a>
   <nav aria-label="Main">
-    <a href="#services">Services</a>
-    <a href="#how">How it works</a>
+    <a href={`${home}#services`}>Services</a>
+    <a href={`${home}#how`}>How it works</a>
   </nav>
-  <div class="cta"><Button href="#contact">Book a call</Button></div>
+  <div class="cta"><Button href={`${home}#contact`}>Request a call</Button></div>
 </header>
 
 <style>
@@ -28,7 +31,7 @@ import Button from "./ui/Button.astro";
 
   .cta { display: flex; margin-left: auto; flex: none; }
 
-  /* Mobile: logo and Book a call only */
+  /* Mobile: logo and Request a call only */
   @media (max-width: 759px) {
     nav { display: none; }
     .logo img { height: 28px; }
