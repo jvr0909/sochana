@@ -7,7 +7,7 @@ import Aurora from "./ui/Aurora.astro";
 <section class="contact wrap" id="contact">
   <div class="inner">
     <!-- Left: what happens after you book -->
-    <div class="card">
+    <div class="card" data-reveal>
       <Aurora
         blobs={[
           { color: "--teal-500", size: 340, x: "40%", y: "-45%", duration: 15 },
@@ -36,7 +36,7 @@ import Aurora from "./ui/Aurora.astro";
     </div>
 
     <!-- Right: the booking form -->
-    <div class="form-wrap"><BookingForm /></div>
+    <div class="form-wrap" data-reveal style="--i: 1"><BookingForm /></div>
   </div>
 </section>
 

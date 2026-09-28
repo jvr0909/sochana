@@ -31,3 +31,28 @@ const { title, description } = Astro.props;
     <slot />
   </body>
 </html>
+
+<script>
+  // In-page links (#services, #contact, …) scroll to their section without adding the
+  // #fragment to the address bar. The hrefs stay, so links still work without JavaScript.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  document.addEventListener("click", (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+    const target = link && document.getElementById(link.hash.slice(1));
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth" });
+    // Continue keyboard navigation from the section, as a normal #link would
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  });
+
+  // Links from elsewhere that arrive with a #fragment: jump to the section, then drop the fragment
+  if (location.hash) {
+    document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "instant" });
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+</script>

@@ -1,0 +1,43 @@
+---
+// Fades page elements up into place as they scroll into view, once each.
+// Mark an element with `data-reveal`; add style="--i: n" to stagger siblings (n × 80ms).
+// Without JavaScript, or with reduced motion turned on, everything simply shows.
+---
+
+<!-- Runs before the page paints, so marked elements start hidden rather than flashing -->
+<script is:inline>
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("reveal-on");
+  }
+</script>
+
+<script>
+  if (document.documentElement.classList.contains("reveal-on")) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px" },
+    );
+    document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+  }
+</script>
+
+<style is:global>
+  .reveal-on [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 700ms var(--ease-standard),
+      transform 700ms var(--ease-standard);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .reveal-on [data-reveal].revealed {
+    opacity: 1;
+    transform: none;
+  }
+</style>

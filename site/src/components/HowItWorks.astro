@@ -7,8 +7,8 @@ import SectionIntro from "./SectionIntro.astro";
   <SectionIntro {...howIntro} />
   <ol>
     {
-      steps.map((s) => (
-        <li>
+      steps.map((s, i) => (
+        <li data-reveal style={{ "--i": i }}>
           <span class="num">{s.num}</span>
           <div class="text">
             <span class="when">{s.when}</span>
