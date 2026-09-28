@@ -1,6 +1,7 @@
 ---
-// Booking request form. Set PUBLIC_FORM_ENDPOINT (e.g. a Formspree URL) in .env to deliver
-// submissions; without it, submitting only shows the confirmation, as in the design.
+// Booking request form, delivered by Netlify Forms. Netlify finds the form in the built HTML
+// (data-netlify) and collects submissions; see the Forms tab in the Netlify dashboard.
+// Under `npm run dev` nothing is sent: submitting only shows the confirmation.
 //
 // The form and the confirmation share one card: on submit the confirmation fades in
 // over the form, so the card (and the page around it) keeps its size.
@@ -8,12 +9,14 @@ import { contact } from "../content";
 import Button from "./ui/Button.astro";
 import Field from "./ui/Field.astro";
 
-const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? "";
 const [defaultConcern] = contact.concerns;
 ---
 
 <div class="card" id="booking" data-state="form">
-  <form class="form" id="booking-form" data-endpoint={endpoint}>
+  <form class="form" id="booking-form" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="booking" />
+    <!-- Spam trap: hidden from people, filled in by bots -->
+    <p class="trap" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
     <h3>Tell us what you're seeing</h3>
 
     <div class="grid">
@@ -74,15 +77,15 @@ const [defaultConcern] = contact.concerns;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const endpoint = form.dataset.endpoint;
-    if (endpoint) {
+    if (!import.meta.env.DEV) {
       const submit = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
       submit.disabled = true;
       try {
-        const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+        const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
         if (!res.ok) throw new Error(res.statusText);
       } catch {
-        alert("Sorry, your request could not be sent. Please try again.");
+        alert("Sorry, your request could not be sent. Please try again, or email us directly.");
         return;
       } finally {
         submit.disabled = false;
@@ -143,6 +146,8 @@ const [defaultConcern] = contact.concerns;
   }
   .chip[aria-pressed="true"] { border-color: var(--ink-900); background: var(--ink-900); color: var(--ink-50); }
   .chip:focus-visible { border-radius: 999px; }
+
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
   .note { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; }
 

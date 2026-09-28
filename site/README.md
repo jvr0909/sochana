@@ -32,10 +32,14 @@ Each component keeps its own styles in a `<style>` block. Those styles only appl
 
 ## Booking form
 
-To have submissions delivered, create `.env` with a form service URL (for example Formspree):
+Submissions are collected by **Netlify Forms**. Nothing extra is needed in the code.
 
-```
-PUBLIC_FORM_ENDPOINT=https://formspree.io/f/xxxxxxx
-```
+- In the Netlify dashboard, go to **Forms** and turn on form detection if it's off.
+- Once the site has deployed, submissions appear under **Forms → booking**.
+- To get each one by email, go to **Forms → Form notifications → Add notification → Email notification**.
 
-Without it, submitting only shows the confirmation message. No request is sent.
+Under `npm run dev`, nothing is sent: submitting only shows the confirmation.
+
+## Deploying
+
+`netlify.toml` at the repo root holds the build settings: base `site`, command `npm run build`, publish `dist`.
