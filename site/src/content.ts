@@ -4,7 +4,6 @@ export const hero = {
   eyebrow: "Fraud consulting",
   title: "Stop losing money to fraud disputes",
   sub: "Chargebacks, friendly fraud and first-party claims, traced to the source and fought with evidence.",
-  availability: "Taking 3 clients for Q4",
   // Illustrative sample figure on the hero card, not a claim
   sample: { label: "Disputes recovered / yr", value: "$1,412,800", bars: [40, 55, 35, 70, 100, 60], peak: 4 },
   card: {
@@ -56,7 +55,6 @@ export type Service = {
   icon: "search" | "shield-check" | "file-check" | "compass";
   eyebrow: string;
   title: string;
-  time: string;
   body: string;
   gets: string[];
 };
@@ -72,7 +70,6 @@ export const services: Service[] = [
     icon: "search",
     eyebrow: "01 · Assess",
     title: "Dispute assessment",
-    time: "4 weeks · fixed fee",
     body: "A review of your chargebacks, refunds and claims that separates real fraud from friendly fraud and errors, and shows what each costs a year.",
     gets: ["Every dispute sorted by reason code and root cause", "Your dispute rate against card-scheme limits", "Prioritised fix list and board-ready summary"],
   },
@@ -80,7 +77,6 @@ export const services: Service[] = [
     icon: "shield-check",
     eyebrow: "02 · Prevent",
     title: "Dispute prevention",
-    time: "6–12 weeks",
     body: "Rules, checks and customer messaging that stop disputes before they are filed, built in your existing stack.",
     gets: ["Rules for serial disputers and first-party fraud", "Clearer billing descriptors and delivery proof", "Dashboards for dispute rate, win rate and approvals"],
   },
@@ -88,7 +84,6 @@ export const services: Service[] = [
     icon: "file-check",
     eyebrow: "03 · Respond",
     title: "Dispute response",
-    time: "On demand",
     body: "Build the evidence and processes to fight the disputes you should win, and accept the ones you shouldn't.",
     gets: ["Evidence templates for each reason code", "Representment workflow for your team or processor", "Win-rate tracking by reason code and card network"],
   },
@@ -96,7 +91,6 @@ export const services: Service[] = [
     icon: "compass",
     eyebrow: "04 · Advise",
     title: "Ongoing advisory",
-    time: "Monthly retainer",
     body: "A senior fraud and disputes lead on call for your team, without the full-time hire.",
     gets: ["Monthly dispute and loss review", "Early warning before you near scheme limits", "Sign-off on new products, markets and payment methods"],
   },

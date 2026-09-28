@@ -5,15 +5,12 @@ import type { Service } from "../content";
 type Props = Service;
 
 const icons = { search: Search, "shield-check": ShieldCheck, "file-check": FileCheck, compass: Compass };
-const { icon, eyebrow, title, time, body, gets } = Astro.props;
+const { icon, eyebrow, title, body, gets } = Astro.props;
 const Icon = icons[icon];
 ---
 
 <article class="service">
-  <div class="top">
-    <div class="icon"><Icon size={20} aria-hidden="true" /></div>
-    <span class="time">{time}</span>
-  </div>
+  <div class="icon"><Icon size={20} aria-hidden="true" /></div>
   <div class="body">
     <span class="eyebrow">{eyebrow}</span>
     <h3>{title}</h3>
@@ -42,7 +39,6 @@ const Icon = icons[icon];
     padding: clamp(22px,2.2vw,32px);
   }
 
-  .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
   .icon {
     width: 44px;
     height: 44px;
@@ -54,7 +50,6 @@ const Icon = icons[icon];
     justify-content: center;
     flex: none;
   }
-  .time { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--text-muted); text-align: right; }
 
   .body { display: flex; flex-direction: column; gap: 10px; }
   .body .eyebrow { font-size: 11px; color: var(--text-accent); }
