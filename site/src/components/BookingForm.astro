@@ -1,6 +1,9 @@
 ---
 // Booking request form. Set PUBLIC_FORM_ENDPOINT (e.g. a Formspree URL) in .env to deliver
 // submissions; without it, submitting only shows the confirmation, as in the design.
+//
+// The form and the confirmation share one card: on submit the confirmation fades in
+// over the form, so the card (and the page around it) keeps its size.
 import { contact } from "../content";
 import Button from "./ui/Button.astro";
 import Field from "./ui/Field.astro";
@@ -9,44 +12,47 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? "";
 const [defaultConcern] = contact.concerns;
 ---
 
-<form class="panel form" id="booking-form" data-endpoint={endpoint}>
-  <h3>Tell us what you're seeing</h3>
+<div class="card" id="booking" data-state="form">
+  <form class="form" id="booking-form" data-endpoint={endpoint}>
+    <h3>Tell us what you're seeing</h3>
 
-  <div class="grid">
-    <Field label="Full name" name="name" placeholder="Alex Morgan" autocomplete="name" required />
-    <Field label="Work email" name="email" type="email" placeholder="alex@company.com" autocomplete="email" required />
-    <Field label="Company" name="company" placeholder="Northwind Pay" autocomplete="organization" />
-    <Field label="Role" name="role" as="select" options={contact.roles} />
-  </div>
-
-  <fieldset>
-    <legend>Main fraud concern</legend>
-    <input type="hidden" name="concern" value={defaultConcern} />
-    <div class="chips">
-      {contact.concerns.map((c) => <button type="button" class="chip" aria-pressed={c === defaultConcern ? "true" : "false"}>{c}</button>)}
+    <div class="grid">
+      <Field label="Full name" name="name" placeholder="Alex Morgan" autocomplete="name" required />
+      <Field label="Work email" name="email" type="email" placeholder="alex@company.com" autocomplete="email" required />
+      <Field label="Company" name="company" placeholder="Northwind Pay" autocomplete="organization" />
+      <Field label="Role" name="role" as="select" options={contact.roles} />
     </div>
-  </fieldset>
 
-  <Field
-    label="Message"
-    name="message"
-    as="textarea"
-    rows={4}
-    placeholder="e.g. Chargebacks up 3× since March, mostly 'item not received' claims from repeat customers. Our dispute rate is 0.8%."
-  />
+    <fieldset>
+      <legend>Main fraud concern</legend>
+      <input type="hidden" name="concern" value={defaultConcern} />
+      <div class="chips">
+        {contact.concerns.map((c) => <button type="button" class="chip" aria-pressed={c === defaultConcern ? "true" : "false"}>{c}</button>)}
+      </div>
+    </fieldset>
 
-  <Button type="submit" size="l" fullWidth>Request a consultation</Button>
-  <span class="note">Personal reply within one business day</span>
-</form>
+    <Field
+      label="Message"
+      name="message"
+      as="textarea"
+      rows={4}
+      placeholder="e.g. Chargebacks up 3× since March, mostly 'item not received' claims from repeat customers. Our dispute rate is 0.8%."
+    />
 
-<div class="panel sent" id="booking-sent" hidden role="status" tabindex="-1">
-  <span class="dot" aria-hidden="true"></span>
-  <span class="title">Request received.</span>
-  <p>You'll get a personal reply within one business day with a few times for your call.</p>
-  <div><Button variant="secondary" id="booking-reset">Send another</Button></div>
+    <Button type="submit" size="l" fullWidth>Request a consultation</Button>
+    <span class="note">Personal reply within one business day</span>
+  </form>
+
+  <div class="sent" id="booking-sent" role="status" tabindex="-1" inert>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="title">Request received.</span>
+    <p>You'll get a personal reply within one business day with a few times for your call.</p>
+    <div><Button variant="secondary" id="booking-reset">Send another</Button></div>
+  </div>
 </div>
 
 <script>
+  const card = document.getElementById("booking") as HTMLElement;
   const form = document.getElementById("booking-form") as HTMLFormElement;
   const sent = document.getElementById("booking-sent") as HTMLElement;
   const concern = form.elements.namedItem("concern") as HTMLInputElement;
@@ -55,6 +61,13 @@ const [defaultConcern] = contact.concerns;
   function selectChip(chip: HTMLButtonElement) {
     chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
     concern.value = chip.textContent ?? "";
+  }
+
+  // Swap which face of the card is showing; the hidden face is inert so it can't be tabbed into.
+  function show(state: "form" | "sent") {
+    card.dataset.state = state;
+    form.inert = state === "sent";
+    sent.inert = state === "form";
   }
 
   chips.forEach((chip) => chip.addEventListener("click", () => selectChip(chip)));
@@ -75,27 +88,38 @@ const [defaultConcern] = contact.concerns;
         submit.disabled = false;
       }
     }
-    form.hidden = true;
-    sent.hidden = false;
-    sent.focus();
+    show("sent");
+    sent.focus({ preventScroll: true });
   });
 
   document.getElementById("booking-reset")!.addEventListener("click", () => {
     form.reset();
     selectChip(chips[0]);
-    sent.hidden = true;
-    form.hidden = false;
+    show("form");
   });
 </script>
 
 <style>
-  .panel {
+  /* Form and confirmation sit in the same grid cell, so the card is always as tall as the form */
+  .card {
     height: 100%;
+    display: grid;
     background: var(--white);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
   }
-  [hidden] { display: none; }
+  .form,
+  .sent {
+    grid-area: 1 / 1;
+    transition: opacity 180ms var(--ease-standard);
+  }
+  /* The outgoing face fades out, then hides; the incoming face is visible (and focusable) at once */
+  .card[data-state="form"] .sent,
+  .card[data-state="sent"] .form {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 180ms var(--ease-standard), visibility 0s linear 180ms;
+  }
 
   /* Form */
   .form { padding: clamp(22px,2.5vw,36px); display: flex; flex-direction: column; gap: 20px; }
@@ -123,8 +147,8 @@ const [defaultConcern] = contact.concerns;
   .note { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; }
 
   /* Confirmation */
-  .sent { padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
-  .sent[hidden] { display: none; }
+  .sent { padding: clamp(22px,2.5vw,40px); display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .sent:focus { box-shadow: none; }
   .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--teal-500); }
   .title { font-family: var(--font-mono); font-size: 26px; font-weight: 500; color: var(--text-strong); }
   .sent p { font-size: 16px; line-height: 1.6; color: var(--text-body); }
