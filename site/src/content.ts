@@ -4,20 +4,22 @@ export const hero = {
   eyebrow: "Fraud consulting",
   title: "Stop losing money to fraud disputes",
   sub: "Chargebacks, friendly fraud and first-party claims, traced to the source and fought with evidence.",
-  // Illustrative sample figure on the hero card, not a claim
-  sample: { label: "Disputes recovered / yr", value: "$1,412,800", bars: [40, 55, 35, 70, 100, 60], peak: 4 },
+  // Illustrative sample figure on the hero card, not a claim; shown with an "Example" tag
+  sample: { tag: "Example", label: "Disputes recovered / yr", value: "$1,412,800", bars: [40, 55, 35, 70, 100, 60], peak: 4 },
   card: {
     title: "Book a consultation",
-    body: "30 minutes with the investigator who does the work.",
-    cta: "Pick a time",
+    body: "A 30-minute call on your disputes. No pitch deck.",
+    cta: "Request a call",
     metaTitle: "No sales team, no hand-offs",
     metaBody: "Personal reply within 1 business day",
   },
 };
 
-export const tilesTitle = "Follow the money, hop by hop, until it stops leaving";
+export const tilesTitle = "Trace every dispute back to where it started";
 
+// Illustrative figures, shown with an "Example diagnostic" tag
 export const diagnostic = {
+  tag: "Example diagnostic",
   title: "Dispute diagnostic",
   lead: { value: "61%", label: "friendly fraud" },
   rows: [
@@ -34,7 +36,9 @@ export const marqueeRows = [
   ["Representment", "Dispute rate", "Stolen cards", "Triangulation", "Seller fraud"],
 ];
 
+// Illustrative case, shown with an "Example case" tag
 export const disputeCase = {
+  tag: "Example case",
   id: "Dispute · DP-2291",
   status: "Won",
   steps: [
@@ -62,7 +66,7 @@ export type Service = {
 export const servicesIntro = {
   eyebrow: "Services",
   title: "Four ways to work together",
-  body: "Most clients start with an assessment. Some come in when their dispute rate nears the card-scheme limit. Either way, the same investigator runs it from first call to handover.",
+  body: "Most engagements start with an assessment. If your dispute rate is nearing the card-scheme limit, we start there instead. Either way, one senior lead runs it from first call to handover.",
 };
 
 export const services: Service[] = [
@@ -99,7 +103,7 @@ export const services: Service[] = [
 export const howIntro = {
   eyebrow: "How it works",
   title: "Weekly findings. No 90-page report.",
-  body: "Start from a confirmed loss, work back through each hop, and close the gap at its source.",
+  body: "Start from a confirmed loss, work back step by step, and close the gap at its source.",
 };
 
 export const steps = [
@@ -109,7 +113,7 @@ export const steps = [
   { num: "04", when: "Ongoing", title: "Hand over and monitor", body: "Your team owns the rules, dashboards and playbooks. Monthly check-ins after." },
 ];
 
-export const industries = ["Payments", "Neobanks", "Lending", "E-commerce", "Marketplaces"];
+export const industries = ["E-commerce", "Marketplaces", "Subscriptions", "Digital goods", "Payment platforms"];
 
 export const contact = {
   eyebrow: "Book a consultation",
@@ -120,7 +124,10 @@ export const contact = {
     { num: "03", title: "A one-page summary", body: "Your biggest exposure and a next step, whether or not you go ahead." },
   ],
   roles: ["Founder / CEO", "Head of Risk", "Head of Fraud", "Operations lead", "Payments lead", "Other"],
-  concerns: ["Fraud disputes", "Chargebacks", "Friendly fraud", "Refund abuse", "Account takeover", "Payment fraud", "Not sure yet"],
+  concerns: ["Chargebacks", "Friendly fraud", "Refund abuse", "Account takeover", "Payment fraud", "Not sure yet"],
 };
 
-export const footerLine = "© 2026 Sochana · Following the money, hop by hop";
+export const footerLine = "© 2026 Sochana · Every dispute, traced to its source";
+
+// Used in the footer and the privacy policy
+export const contactEmail = "contact@sochana.com";

@@ -1,0 +1,83 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { contactEmail } from "../content";
+import Layout from "../layouts/Layout.astro";
+
+const updated = "28 September 2026";
+---
+
+<Layout
+  title="Privacy policy · Sochana"
+  description="How Sochana uses the information you send through the booking form on this site."
+>
+  <Header />
+  <main class="wrap">
+    <article class="policy">
+      <span class="eyebrow">Last updated {updated}</span>
+      <h1>Privacy policy</h1>
+      <p class="lede">This page explains what we collect when you send us a request through the form on this site, and what we do with it.</p>
+
+      <h2>What we collect</h2>
+      <p>When you submit the booking form, we receive:</p>
+      <ul>
+        <li>your name</li>
+        <li>your work email</li>
+        <li>your company</li>
+        <li>your role</li>
+        <li>the fraud concern you selected</li>
+        <li>your message</li>
+      </ul>
+      <p>We don't ask for anything else, and the form doesn't collect payment or card details.</p>
+
+      <h2>How we use it</h2>
+      <p>We use it only to respond to your inquiry: to reply to you and to arrange a call if you want one.</p>
+
+      <h2>Who we share it with</h2>
+      <p>
+        We don't sell your information or share it with anyone else. Form submissions are stored by our website host,
+        Netlify, which delivers them to us.
+      </p>
+
+      <h2>Deleting your information</h2>
+      <p>
+        To ask us to delete what you sent us, email <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. We'll confirm
+        once it's done.
+      </p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main { padding-top: clamp(24px,4vw,56px); padding-bottom: clamp(64px,7vw,96px); }
+
+  .policy { max-width: 680px; display: flex; flex-direction: column; gap: 16px; }
+
+  h1 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(34px,4vw,52px);
+    line-height: 1.05;
+    letter-spacing: -.035em;
+    color: var(--text-strong);
+    margin-bottom: 8px;
+  }
+  h2 {
+    margin-top: 24px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -.01em;
+    color: var(--text-strong);
+  }
+
+  p, li { font-size: 16px; line-height: 1.65; color: var(--text-body); }
+  .lede { font-size: 18px; color: var(--text-muted); }
+  ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+  a { color: var(--text-accent); text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: var(--text-strong); }
+</style>

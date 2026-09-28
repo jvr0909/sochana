@@ -2,6 +2,7 @@
 // 01 · Assess: a sample breakdown of dispute losses by type.
 import { diagnostic, tileCaptions } from "../../content";
 import Aurora from "../ui/Aurora.astro";
+import ExampleTag from "../ui/ExampleTag.astro";
 import Tile from "./Tile.astro";
 
 const { eyebrow, text } = tileCaptions[0];
@@ -20,6 +21,7 @@ const { eyebrow, text } = tileCaptions[0];
     role="img"
     aria-label={`Example dispute diagnostic: ${diagnostic.lead.label} accounts for ${diagnostic.lead.value} of dispute losses`}
   >
+    <ExampleTag>{diagnostic.tag}</ExampleTag>
     <span class="title">{diagnostic.title}</span>
     <span class="figure">{diagnostic.lead.value}<small>{diagnostic.lead.label}</small></span>
     {
@@ -47,7 +49,7 @@ const { eyebrow, text } = tileCaptions[0];
     display: flex;
     flex-direction: column;
     gap: 14px;
-    padding: 22px;
+    padding: 22px 46px 22px 22px; /* extra right padding keeps the figures clear of the tile edge */
     background: var(--ink-900);
     border: 1px solid var(--ink-700);
     border-radius: var(--radius-l);
