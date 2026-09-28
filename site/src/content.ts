@@ -129,5 +129,5 @@ export const contact = {
 
 export const footerLine = "© 2026 Sochana · Every dispute, traced to its source";
 
-// TODO: replace with the real contact address before launch (used in the footer and the privacy policy)
-export const contactEmail = "[CONTACT_EMAIL]";
+// Used in the footer and the privacy policy
+export const contactEmail = "contact@sochana.com";
