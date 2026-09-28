@@ -1,0 +1,19 @@
+---
+import { industries } from "../content";
+---
+
+<section class="built-for wrap" aria-label="Industries">
+  <span class="eyebrow">Built for</span>
+  {industries.map((i) => <span class="industry">{i}</span>)}
+</section>
+
+<style>
+  .built-for {
+    padding-bottom: var(--section-gap);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 28px;
+  }
+  .industry { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--ink-700); }
+</style>

@@ -1,0 +1,50 @@
+---
+import { howIntro, steps } from "../content";
+import SectionIntro from "./SectionIntro.astro";
+---
+
+<section class="how wrap" id="how">
+  <SectionIntro {...howIntro} />
+  <ol>
+    {
+      steps.map((s) => (
+        <li>
+          <span class="num">{s.num}</span>
+          <div class="text">
+            <span class="when">{s.when}</span>
+            <span class="title">{s.title}</span>
+            <span class="body">{s.body}</span>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .how {
+    padding-bottom: var(--section-gap);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%,360px),1fr));
+    gap: clamp(32px,5vw,72px);
+    align-items: start;
+    scroll-margin-top: 24px;
+  }
+
+  ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  li {
+    display: grid;
+    grid-template-columns: 52px minmax(0,1fr);
+    gap: 18px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border-default);
+    align-items: baseline;
+  }
+  .num { font-family: var(--font-mono); font-size: 26px; font-weight: 500; color: var(--ink-300); }
+  li:last-child .num { color: var(--teal-600); } /* the trace ends in teal */
+
+  .text { display: flex; flex-direction: column; gap: 6px; }
+  .when { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+  .title { font-size: 19px; font-weight: 600; color: var(--text-strong); }
+  .body { font-size: 15px; line-height: 1.6; color: var(--text-body); }
+</style>

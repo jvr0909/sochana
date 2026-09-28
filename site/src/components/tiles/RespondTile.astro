@@ -1,0 +1,45 @@
+---
+// 03 · Respond: a sample dispute case timeline, from chargeback to recovery.
+import { disputeCase, tileCaptions } from "../../content";
+import Aurora from "../ui/Aurora.astro";
+import Badge from "../ui/Badge.astro";
+import TraceSteps from "../ui/TraceSteps.astro";
+import Tile from "./Tile.astro";
+
+const { eyebrow, text } = tileCaptions[2];
+---
+
+<Tile eyebrow={eyebrow} caption={text}>
+  <Aurora
+    blobs={[
+      { color: "--teal-300", size: 260, x: "45%", y: "-15%", duration: 14, path: "b" },
+      { color: "--blue-700", size: 320, x: "-25%", y: "0%", duration: 16 },
+      { color: "--teal-500", size: 220, x: "-5%", y: "35%", duration: 12, path: "b" },
+    ]}
+  />
+  <div class="case">
+    <div class="head">
+      <span class="eyebrow">{disputeCase.id}</span>
+      <Badge>{disputeCase.status}</Badge>
+    </div>
+    <TraceSteps steps={disputeCase.steps} />
+  </div>
+</Tile>
+
+<style>
+  .case {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: -12px; /* sits on the tile's bottom edge */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 22px 34px;
+    background: var(--white);
+    border-radius: var(--radius-l) var(--radius-l) 0 0;
+    box-shadow: var(--shadow-3);
+  }
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .head .eyebrow { font-size: 11px; }
+</style>

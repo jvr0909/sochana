@@ -1,0 +1,130 @@
+---
+// The animated navy card beside the hero headline.
+import { hero } from "../content";
+import Aurora from "./ui/Aurora.astro";
+
+const { sample, card } = hero;
+---
+
+<div class="card">
+  <Aurora
+    blobs={[
+      { color: "--teal-500", size: 360, x: "40%", y: "-30%", duration: 14 },
+      { color: "--blue-500", size: 300, x: "-25%", y: "-20%", duration: 17, path: "b" },
+      { color: "--teal-300", size: 180, x: "65%", y: "0%", duration: 12, path: "b" },
+      { color: "--blue-900", size: 360, x: "-10%", y: "55%", duration: 19 },
+      { color: "--teal-900", size: 260, x: "55%", y: "70%", duration: 15, path: "b" },
+    ]}
+  />
+
+  <div class="top">
+    <span class="status">{hero.availability}</span>
+    <div class="sample" aria-hidden="true">
+      <span class="sample-label">{sample.label}</span>
+      <span class="sample-value">{sample.value}</span>
+      <div class="bars">
+        {sample.bars.map((h, i) => <span class:list={{ peak: i === sample.peak }} style={{ "--h": `${h}%` }} />)}
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="heading">
+      <h2>{card.title}</h2>
+      <p>{card.body}</p>
+    </div>
+    <a href="#contact" class="cta">{card.cta}</a>
+    <div class="meta">
+      <img src="/app-icon.png" alt="" width="44" height="44" />
+      <div>
+        <strong>{card.metaTitle}</strong>
+        <span>{card.metaBody}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    min-height: clamp(460px,37vw,540px);
+    background: var(--ink-900);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(24px,2.2vw,32px);
+  }
+
+  /* Top row: availability pill + tilted sample stat */
+  .top { position: relative; display: flex; align-items: flex-start; min-height: 190px; }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 12px;
+    background: var(--ink-900);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    white-space: nowrap;
+    flex: none;
+  }
+  .status::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--teal-500); }
+
+  .sample {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+    background: var(--white);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-3);
+    transform: rotate(4deg);
+  }
+  .sample-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+  .sample-value { font-family: var(--font-mono); font-size: 22px; font-weight: 500; color: var(--text-strong); }
+  .bars { display: flex; gap: 3px; align-items: flex-end; height: 34px; }
+  .bars span { flex: 1; height: var(--h); background: var(--ink-800); border-radius: 2px; }
+  .bars span.peak { background: var(--teal-500); }
+
+  /* Bottom: heading, CTA, reassurance line */
+  .bottom { position: relative; display: flex; flex-direction: column; gap: 22px; }
+  .heading { display: flex; flex-direction: column; gap: 10px; }
+  h2 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(32px,2.8vw,40px);
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    color: var(--white);
+  }
+  .heading p { font-size: 16px; line-height: 1.5; color: var(--ink-100); }
+
+  .cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    background: var(--white);
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink-900);
+    transition: background var(--dur-fast) var(--ease-standard);
+  }
+  .cta:hover { background: var(--ink-100); }
+  .cta:focus-visible { border-radius: 8px; }
+
+  .meta { display: flex; align-items: center; gap: 14px; padding-top: 4px; }
+  .meta img { width: 44px; height: 44px; border-radius: 10px; flex: none; }
+  .meta div { display: flex; flex-direction: column; gap: 2px; }
+  .meta strong { font-size: 15px; font-weight: 600; color: var(--white); }
+  .meta span { font-family: var(--font-mono); font-size: 13px; color: var(--ink-100); }
+</style>

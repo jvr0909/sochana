@@ -1,0 +1,37 @@
+---
+import { tilesTitle } from "../content";
+import AssessTile from "./tiles/AssessTile.astro";
+import PreventTile from "./tiles/PreventTile.astro";
+import RespondTile from "./tiles/RespondTile.astro";
+---
+
+<section class="tiles-section wrap">
+  <h2>{tilesTitle}</h2>
+  <div class="tiles">
+    <AssessTile />
+    <PreventTile />
+    <RespondTile />
+  </div>
+</section>
+
+<style>
+  .tiles-section {
+    padding-bottom: var(--section-gap);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px,4vw,56px);
+  }
+  h2 {
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(30px,3.6vw,52px);
+    line-height: 1.08;
+    letter-spacing: -.035em;
+    color: var(--text-strong);
+    text-wrap: balance;
+  }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,300px),1fr)); gap: 20px; }
+</style>

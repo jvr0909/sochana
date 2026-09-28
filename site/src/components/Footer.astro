@@ -1,0 +1,23 @@
+---
+import { footerLine } from "../content";
+---
+
+<footer class="site-footer wrap">
+  <img src="/logo-lockup-on-light.png" alt="Sochana" width="610" height="130" />
+  <span>{footerLine}</span>
+</footer>
+
+<style>
+  .site-footer {
+    padding-top: 32px;
+    padding-bottom: 40px;
+    border-top: 1px solid var(--border-default);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  img { height: 28px; width: auto; }
+  span { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--text-muted); }
+</style>

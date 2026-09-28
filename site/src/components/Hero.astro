@@ -1,0 +1,52 @@
+---
+import { hero } from "../content";
+import BookingCard from "./BookingCard.astro";
+---
+
+<section class="hero wrap">
+  <div class="copy">
+    <span class="eyebrow">{hero.eyebrow}</span>
+    <h1>{hero.title}<span class="dot" aria-hidden="true"></span></h1>
+    <p>{hero.sub}</p>
+  </div>
+  <BookingCard />
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(24px,4vw,56px);
+    padding-bottom: var(--section-gap);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%,420px),1fr));
+    gap: clamp(40px,4.5vw,64px);
+    align-items: center;
+  }
+  .copy { display: flex; flex-direction: column; gap: clamp(20px,2.2vw,32px); }
+
+  h1 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(38px,5vw,72px);
+    line-height: 1.02;
+    letter-spacing: -.04em;
+    color: var(--text-strong);
+    text-wrap: balance;
+  }
+  /* Teal full stop, echoing the logo's end node */
+  .dot {
+    display: inline-block;
+    width: .25em;
+    height: .25em;
+    border-radius: 50%;
+    background: var(--teal-500);
+    margin-left: .1em;
+  }
+
+  p {
+    max-width: 520px;
+    font-size: clamp(17px,1.4vw,20px);
+    line-height: 1.55;
+    color: var(--text-muted);
+    text-wrap: pretty;
+  }
+</style>

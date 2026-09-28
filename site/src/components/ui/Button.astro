@@ -1,0 +1,52 @@
+---
+// DS Button. Renders a link when `href` is set, otherwise a <button>.
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"button"> & {
+  href?: string;
+  variant?: "primary" | "secondary";
+  size?: "m" | "l";
+  fullWidth?: boolean;
+};
+
+const { href, variant = "primary", size = "m", fullWidth = false, type = "button", ...rest } = Astro.props;
+const classes = ["btn", variant, size, { full: fullWidth }];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes}><slot /></a>
+  ) : (
+    <button type={type} class:list={classes} {...rest}><slot /></button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: var(--radius-m);
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease-standard);
+  }
+  .btn:focus-visible { border-radius: var(--radius-m); }
+
+  .m { height: 38px; padding: 0 16px; font-size: 14px; }
+  .l { height: 46px; padding: 0 22px; font-size: 15px; }
+  .full { display: flex; width: 100%; }
+
+  .primary { background: var(--action-primary); color: var(--action-primary-text); }
+  .primary:hover { background: var(--action-primary-hover); }
+  .primary:active { background: var(--action-primary-press); }
+
+  .secondary { background: var(--white); color: var(--text-strong); border-color: var(--border-default); }
+  .secondary:hover { background: var(--ink-50); }
+  .secondary:active { background: var(--ink-100); }
+</style>

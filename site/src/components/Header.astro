@@ -1,0 +1,36 @@
+---
+import Button from "./ui/Button.astro";
+---
+
+<header class="site-header wrap" id="top">
+  <a href="#top" class="logo"><img src="/logo-lockup-on-light.png" alt="Sochana" width="610" height="130" /></a>
+  <nav aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+  </nav>
+  <div class="cta"><Button href="#contact">Book a call</Button></div>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-top: clamp(18px,2.2vw,28px);
+    padding-bottom: clamp(18px,2.2vw,28px);
+  }
+  .logo { display: flex; flex: none; }
+  .logo img { height: 34px; width: auto; }
+
+  nav { display: flex; gap: 28px; flex: 1; font-size: 15px; font-weight: 500; }
+  nav a { color: var(--text-body); transition: color var(--dur-fast) var(--ease-standard); }
+  nav a:hover { color: var(--text-strong); }
+
+  .cta { display: flex; margin-left: auto; flex: none; }
+
+  /* Mobile: logo and Book a call only */
+  @media (max-width: 759px) {
+    nav { display: none; }
+    .logo img { height: 28px; }
+  }
+</style>
