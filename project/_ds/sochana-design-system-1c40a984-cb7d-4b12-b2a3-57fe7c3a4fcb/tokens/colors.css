@@ -1,0 +1,23 @@
+/* Sochana color tokens — sampled from the TRACE logo sheet (uploads/Sochana Logo.pdf, p.2) */
+:root{
+/* Ink — navy neutrals. 900 is the brand ground (logo sheet background) */
+--ink-1000:#0a1118;--ink-950:#0d151e;--ink-900:#111a24;--ink-850:#172734;--ink-800:#1d2f3e;--ink-700:#283d4f;--ink-600:#3a5064;--ink-500:#56697c;--ink-400:#6a7683;--ink-300:#95a1ae;--ink-200:#c3ccd5;--ink-150:#dbe2e8;--ink-100:#e9eef3;--ink-50:#f1f5f8;--white:#ffffff;
+/* Trace teal — the terminal node of the mark; the only brand accent */
+--teal-900:#0f3a32;--teal-800:#155246;--teal-700:#1f7a67;--teal-600:#2aa58a;--teal-500:#3bc6a7;--teal-400:#62d4bb;--teal-300:#93e2d0;--teal-100:#d6f4ec;--teal-50:#ecfaf6;
+/* Signal colors — for fraud risk states only */
+--red-700:#a83530;--red-500:#e5534b;--red-300:#f29a94;--red-100:#fbe3e1;--red-900:#3d1a1b;
+--amber-700:#9a6a14;--amber-500:#e0a33b;--amber-300:#f0cb87;--amber-100:#faefd9;--amber-900:#3a2c12;
+--blue-700:#2f6aa3;--blue-500:#5b9bd5;--blue-300:#9dc3e8;--blue-100:#e1edf8;--blue-900:#16283a;
+
+/* Semantic — light surfaces (default for documents, portal, site body) */
+--bg-page:var(--ink-50);--surface-card:var(--white);--surface-sunken:var(--ink-100);--surface-inverse:var(--ink-900);--surface-inverse-raised:var(--ink-850);
+--text-strong:var(--ink-900);--text-body:#2a3a49;--text-muted:var(--ink-500);--text-faint:var(--ink-300);--text-inverse:var(--ink-100);--text-inverse-muted:var(--ink-400);--text-accent:var(--teal-700);--text-accent-inverse:var(--teal-500);
+--border-subtle:var(--ink-150);--border-default:var(--ink-200);--border-strong:var(--ink-300);--border-inverse:var(--ink-700);
+--accent:var(--teal-500);--accent-hover:var(--teal-400);--accent-press:var(--teal-600);--accent-ink:var(--ink-900);--accent-soft:var(--teal-50);
+--action-primary:var(--ink-900);--action-primary-hover:var(--ink-800);--action-primary-press:var(--ink-1000);--action-primary-text:var(--ink-50);
+--focus-ring:var(--teal-500);
+--risk-high:var(--red-500);--risk-high-soft:var(--red-100);--risk-high-text:var(--red-700);
+--risk-medium:var(--amber-500);--risk-medium-soft:var(--amber-100);--risk-medium-text:var(--amber-700);
+--risk-low:var(--teal-500);--risk-low-soft:var(--teal-50);--risk-low-text:var(--teal-700);
+--info:var(--blue-500);--info-soft:var(--blue-100);--info-text:var(--blue-700);
+}

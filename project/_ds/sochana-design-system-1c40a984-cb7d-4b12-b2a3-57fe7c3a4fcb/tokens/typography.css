@@ -1,0 +1,12 @@
+/* The wordmark and sheet labels are set in a monospace grotesque (IBM Plex Mono is the closest match).
+   Body copy uses IBM Plex Sans, its sibling. */
+:root{
+--font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+--font-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+--font-display:var(--font-mono);--font-body:var(--font-sans);--font-label:var(--font-mono);--font-data:var(--font-mono);
+--fw-regular:400;/* @kind font */--fw-medium:500;/* @kind font */--fw-semibold:600;/* @kind font */--fw-bold:700;/* @kind font */
+--fs-display-xl:64px;--fs-display-l:48px;--fs-display-m:36px;--fs-h1:30px;--fs-h2:24px;--fs-h3:19px;--fs-body-l:18px;--fs-body:15px;--fs-body-s:13px;--fs-label:12px;--fs-micro:11px;
+--lh-tight:1.1;/* @kind font */--lh-snug:1.25;/* @kind font */--lh-body:1.55;/* @kind font */--lh-loose:1.7;/* @kind font */
+/* The wordmark runs at ~0.18em; eyebrow labels at 0.14em; display at 0.04em */
+--ls-wordmark:0.18em;/* @kind font */--ls-eyebrow:0.14em;/* @kind font */--ls-display:0.02em;/* @kind font */--ls-body:0;/* @kind font */--ls-tight:-0.01em;/* @kind font */
+}

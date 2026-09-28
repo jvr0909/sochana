@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/sochana-design-system-1c40a984-cb7d-4b12-b2a3-57fe7c3a4fcb/styles.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/sochana-design-system-1c40a984-cb7d-4b12-b2a3-57fe7c3a4fcb/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--ink-50)}a{color:inherit;text-decoration:none}a:hover{color:inherit}html{scroll-behavior:smooth}
+textarea:focus{outline:0;border-color:var(--ink-900)!important;box-shadow:0 0 0 3px var(--teal-100)}
+@keyframes sx-a{0%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.18)}100%{transform:translate(-30px,20px) scale(.92)}}
+@keyframes sx-b{0%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-50px,30px) scale(.9)}100%{transform:translate(30px,-40px) scale(1.2)}}
+@keyframes sx-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+</helmet>
+<div ref="{{ rootRef }}" data-screen-label="Sochana · Single page" style="container-type:inline-size;font-family:var(--font-sans);color:var(--text-body);background:var(--ink-50)">
+
+  <header style="max-width:1200px;margin:0 auto;padding:clamp(18px,2.2cqi,28px) clamp(20px,2cqi,24px);display:flex;align-items:center;gap:40px">
+    <a href="#top" id="top" style="display:flex;flex:none">
+      <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Logo" variant="lockup" surface="light" height="{{ logoH }}" base="" hint-size="140px,34px"></x-import>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:28px;flex:1;font-size:15px;font-weight:500;color:var(--text-body)">
+        <a href="#services" style-hover="color:var(--text-strong)">Services</a>
+        <a href="#how" style-hover="color:var(--text-strong)">How it works</a>
+      </nav>
+    </sc-if>
+    <a href="#contact" style="display:flex;margin-left:auto;flex:none"><x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Button" variant="primary" size="m" hint-size="120px,40px">Book a call</x-import></a>
+  </header>
+
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(24px,4cqi,56px) clamp(20px,2cqi,24px) clamp(72px,8cqi,120px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,4.5cqi,64px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:clamp(20px,2.2cqi,32px)">
+      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">Fraud consulting</span>
+      <h1 style="margin:0;font-family:var(--font-mono);font-weight:500;font-size:clamp(38px,5cqi,72px);line-height:1.02;letter-spacing:-.04em;color:var(--text-strong);text-wrap:balance">Stop losing money to fraud disputes<span style="display:inline-block;width:.25em;height:.25em;border-radius:50%;background:var(--teal-500);margin-left:.1em"></span></h1>
+      <p style="margin:0;max-width:520px;font-size:clamp(17px,1.4cqi,20px);line-height:1.55;color:var(--text-muted);text-wrap:pretty">Chargebacks, friendly fraud and first-party claims, traced to the source and fought with evidence.</p>
+    </div>
+
+    <div style="position:relative;border-radius:16px;overflow:hidden;min-height:clamp(460px,37cqi,540px);background:var(--ink-900);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(24px,2.2cqi,32px)">
+      <div style="position:absolute;inset:0">{{ auroraHero }}</div>
+      <div style="position:relative;display:flex;align-items:flex-start;min-height:190px">
+        <span style="display:flex;align-items:center;gap:8px;padding:8px 14px 8px 12px;background:var(--ink-900);border-radius:999px;font-size:14px;font-weight:500;color:var(--white);white-space:nowrap;flex:none"><span style="flex:none;width:8px;height:8px;border-radius:50%;background:var(--teal-500)"></span>Taking 3 clients for Q4</span>
+        <div style="position:absolute;top:60px;right:0;background:var(--white);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;width:190px;box-shadow:var(--shadow-3);transform:rotate(4deg)">
+          <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">Disputes recovered / yr</span>
+          <span style="font-family:var(--font-mono);font-size:22px;font-weight:500;color:var(--text-strong)">$1,412,800</span>
+          <div style="display:flex;gap:3px;align-items:flex-end;height:34px">
+            <span style="flex:1;height:40%;background:var(--ink-800);border-radius:2px"></span><span style="flex:1;height:55%;background:var(--ink-800);border-radius:2px"></span><span style="flex:1;height:35%;background:var(--ink-800);border-radius:2px"></span><span style="flex:1;height:70%;background:var(--ink-800);border-radius:2px"></span><span style="flex:1;height:100%;background:var(--teal-500);border-radius:2px"></span><span style="flex:1;height:60%;background:var(--ink-800);border-radius:2px"></span>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0;font-family:var(--font-mono);font-weight:500;font-size:clamp(32px,2.8cqi,40px);line-height:1.05;letter-spacing:-.03em;color:var(--white)">Book a consultation</h2>
+          <p style="margin:0;font-size:16px;line-height:1.5;color:var(--ink-100)">30 minutes with the investigator who does the work.</p>
+        </div>
+        <a href="#contact" style="display:flex;align-items:center;justify-content:center;height:56px;background:var(--white);border-radius:8px;font-size:17px;font-weight:600;color:var(--ink-900);transition:background 120ms cubic-bezier(.2,0,0,1)" style-hover="background:var(--ink-100)">Pick a time</a>
+        <div style="display:flex;align-items:center;gap:14px;padding-top:4px">
+          <img src="assets/app-icon.png" alt="" style="width:44px;height:44px;border-radius:10px;flex:none;display:block">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:15px;font-weight:600;color:var(--white)">No sales team, no hand-offs</span>
+            <span style="font-family:var(--font-mono);font-size:13px;color:var(--ink-100)">Personal reply within 1 business day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,2cqi,24px) clamp(72px,8cqi,120px);display:flex;flex-direction:column;gap:clamp(32px,4cqi,56px)">
+    <h2 style="margin:0 auto;max-width:900px;text-align:center;font-family:var(--font-mono);font-weight:500;font-size:clamp(30px,3.6cqi,52px);line-height:1.08;letter-spacing:-.035em;color:var(--text-strong);text-wrap:balance">Follow the money, hop by hop, until it stops leaving</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="position:relative;height:420px;border-radius:16px;overflow:hidden;background:var(--ink-900)">
+          <div style="position:absolute;inset:0">{{ auroraA }}</div>
+          <div style="position:absolute;left:36px;right:-24px;top:40px;background:var(--ink-900);border:1px solid var(--ink-700);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow-3)">
+            <span style="font-size:15px;font-weight:600;color:var(--white)">Dispute diagnostic</span>
+            <span style="font-family:var(--font-mono);font-size:30px;font-weight:500;letter-spacing:-.02em;color:var(--white)">61%<span style="font-size:13px;color:var(--ink-300);margin-left:8px;letter-spacing:0">friendly fraud</span></span>
+            <sc-for list="{{ vectors }}" as="v" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-200)"><span>{{ v.label }}</span><span style="font-family:var(--font-mono)">{{ v.value }}</span></div>
+                <div style="height:6px;background:var(--ink-800);border-radius:2px"><div style="height:6px;border-radius:2px;width:{{ v.pct }};background:{{ v.color }}"></div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:0 4px">
+          <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">01 · Assess</span>
+          <span style="font-size:18px;font-weight:600;color:var(--text-strong)">See which disputes are real fraud, which are friendly fraud, and what each costs.</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="position:relative;height:420px;border-radius:16px;overflow:hidden;background:var(--ink-900)">
+          <div style="position:absolute;inset:0">{{ auroraB }}</div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:14px">{{ marquee }}</div>
+          <div style="position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:26px;overflow:hidden;box-shadow:var(--shadow-3)">
+            <img src="assets/app-icon.png" alt="Sochana" style="width:100%;height:100%;display:block">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:0 4px">
+          <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">02 · Prevent</span>
+          <span style="font-size:18px;font-weight:600;color:var(--text-strong)">Stop the patterns that become disputes, without blocking good customers.</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="position:relative;height:420px;border-radius:16px;overflow:hidden;background:var(--ink-900)">
+          <div style="position:absolute;inset:0">{{ auroraC }}</div>
+          <div style="position:absolute;left:28px;right:28px;bottom:-12px;background:var(--white);border-radius:10px 10px 0 0;padding:22px 22px 34px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow-3)">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">Dispute · DP-2291</span>
+              <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Badge" tone="low" hint-size="80px,20px">Won</x-import>
+            </div>
+            <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.TraceSteps" direction="vertical" steps="{{ incident }}" hint-size="100%,200px"></x-import>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:0 4px">
+          <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">03 · Respond</span>
+          <span style="font-size:18px;font-weight:600;color:var(--text-strong)">Fight each dispute with evidence, and win more back.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,2cqi,24px) clamp(72px,8cqi,120px);display:flex;flex-direction:column;gap:40px;scroll-margin-top:24px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:640px">
+      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">Services</span>
+      <h2 style="margin:0;font-family:var(--font-mono);font-weight:500;font-size:clamp(30px,3cqi,44px);line-height:1.08;letter-spacing:-.03em;color:var(--text-strong)">Four ways to work together</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:var(--text-body)">Most clients start with an assessment. Some come in when their dispute rate nears the card-scheme limit. Either way, the same investigator runs it from first call to handover.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:20px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:18px;background:var(--white);border:1px solid var(--border-subtle);border-radius:10px;padding:clamp(22px,2.2cqi,32px)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+            <div style="width:44px;height:44px;border-radius:8px;background:var(--ink-100);color:var(--ink-900);display:flex;align-items:center;justify-content:center;flex:none">
+              <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Icon" name="{{ s.icon }}" size="{{ 20 }}" hint-size="20px,20px"></x-import>
+            </div>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);text-align:right">{{ s.time }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-accent)">{{ s.eyebrow }}</span>
+            <h3 style="margin:0;font-family:var(--font-mono);font-weight:500;font-size:24px;letter-spacing:-.01em;color:var(--text-strong)">{{ s.title }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:var(--text-body);text-wrap:pretty">{{ s.body }}</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--border-subtle)">
+            <sc-for list="{{ s.gets }}" as="d" hint-placeholder-count="3">
+              <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--text-strong)">
+                <span style="color:var(--teal-700);margin-top:2px;flex:none"><x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Icon" name="check" size="{{ 15 }}" hint-size="15px,15px"></x-import></span>
+                <span>{{ d }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="how" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,2cqi,24px) clamp(72px,8cqi,120px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(32px,5cqi,72px);align-items:start;scroll-margin-top:24px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">How it works</span>
+      <h2 style="margin:0;font-family:var(--font-mono);font-weight:500;font-size:clamp(30px,3cqi,44px);line-height:1.08;letter-spacing:-.03em;color:var(--text-strong)">Weekly findings. No 90-page report.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:var(--text-body)">Start from a confirmed loss, work back through each hop, and close the gap at its source.</p>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding:24px 0;border-top:1px solid var(--border-default);align-items:baseline">
+          <span style="font-family:var(--font-mono);font-size:26px;font-weight:500;color:{{ st.numColor }}">{{ st.num }}</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)">{{ st.when }}</span>
+            <span style="font-size:19px;font-weight:600;color:var(--text-strong)">{{ st.title }}</span>
+            <span style="font-size:15px;line-height:1.6;color:var(--text-body)">{{ st.body }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="results" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,2cqi,24px) clamp(72px,8cqi,120px);display:flex;flex-direction:column;gap:40px;scroll-margin-top:24px">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px">
+      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">Built for</span>
+      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="3">
+        <span style="font-family:var(--font-mono);font-size:17px;font-weight:500;color:var(--ink-700)">{{ ind }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="contact" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,2cqi,24px) clamp(64px,7cqi,96px);scroll-margin-top:24px">
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch">
+      <div style="position:relative;flex:1 1 340px;border-radius:16px;overflow:hidden;background:var(--ink-900);padding:clamp(28px,3cqi,44px);display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+        <div style="position:absolute;inset:0">{{ auroraCta }}</div>
+        <div style="position:relative;display:flex;flex-direction:column;gap:18px">
+          <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-100)">Book a consultation</span>
+          <h2 style="margin:0;font-family:var(--font-mono);font-weight:500;font-size:clamp(32px,3.3cqi,48px);line-height:1.05;letter-spacing:-.04em;color:var(--white);text-wrap:balance">Know exactly where the money goes.</h2>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;gap:18px">
+          <sc-for list="{{ next }}" as="n" hint-placeholder-count="3">
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <span style="font-family:var(--font-mono);font-size:13px;color:var(--teal-400);padding-top:2px;flex:none">{{ n.num }}</span>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span style="font-size:16px;font-weight:600;color:var(--white)">{{ n.title }}</span>
+                <span style="font-size:14px;line-height:1.5;color:var(--ink-100)">{{ n.body }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1.3 1 420px;min-width:0">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" style="height:100%;box-sizing:border-box;background:var(--white);border:1px solid var(--border-subtle);border-radius:16px;padding:clamp(22px,2.5cqi,36px);display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-family:var(--font-mono);font-size:20px;font-weight:500;color:var(--text-strong)">Tell us what you're seeing</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
+              <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Input" label="Full name" placeholder="Alex Morgan" size="l" hint-size="100%,72px"></x-import>
+              <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Input" label="Work email" placeholder="alex@company.com" type="email" size="l" hint-size="100%,72px"></x-import>
+              <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Input" label="Company" placeholder="Northwind Pay" size="l" hint-size="100%,72px"></x-import>
+              <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Select" label="Role" options="{{ roles }}" size="l" hint-size="100%,72px"></x-import>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:13px;font-weight:500;color:var(--text-strong)">Main fraud concern</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ concerns }}" as="c" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ c.pick }}" style="font-family:var(--font-sans);font-size:14px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background 120ms,border-color 120ms;border:{{ c.border }};background:{{ c.bg }};color:{{ c.color }}">{{ c.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:13px;font-weight:500;color:var(--text-strong)">Message</span>
+              <textarea rows="4" placeholder="e.g. Chargebacks up 3× since March, mostly 'item not received' claims from repeat customers. Our dispute rate is 0.8%." style="font-family:var(--font-sans);font-size:14px;line-height:1.55;color:var(--text-strong);padding:12px;border:1px solid var(--border-default);border-radius:var(--radius-m);resize:vertical;box-sizing:border-box;transition:box-shadow 120ms,border-color 120ms"></textarea>
+            </label>
+            <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Button" type="submit" variant="primary" size="l" full-width="{{ true }}" hint-size="100%,48px">Request a consultation</x-import>
+            <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);text-align:center">Personal reply within one business day</span>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="height:100%;box-sizing:border-box;background:var(--white);border:1px solid var(--border-subtle);border-radius:16px;padding:40px;display:flex;flex-direction:column;justify-content:center;gap:18px">
+            <span style="width:16px;height:16px;border-radius:50%;background:var(--teal-500)"></span>
+            <span style="font-family:var(--font-mono);font-size:26px;font-weight:500;color:var(--text-strong)">Request received.</span>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:var(--text-body)">You'll get a personal reply within one business day with a few times for your call.</p>
+            <div style="display:flex"><x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Button" variant="secondary" size="m" onClick="{{ reset }}" hint-size="140px,40px">Send another</x-import></div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1200px;margin:0 auto;padding:32px clamp(20px,2cqi,24px) 40px;border-top:1px solid var(--border-default);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+    <x-import component-from-global-scope="SochanaDesignSystem_1c40a9.Logo" variant="lockup" surface="light" height="{{ 28 }}" base="" hint-size="120px,28px"></x-import>
+    <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted)">© 2026 Sochana · Following the money, hop by hop</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { concern: 'Fraud disputes', sent: false, w: 1440 };
+  rootRef = React.createRef();
+  componentDidMount() {
+    const el = this.rootRef.current; if (!el) return;
+    this.ro = new ResizeObserver(([e]) => { const w = e.contentRect.width; if (Math.abs(w - this.state.w) > 1) this.setState({ w }); });
+    this.ro.observe(el);
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  aurora(blobs) {
+    const h = React.createElement;
+    return h('div', { style: { position: 'absolute', inset: 0, overflow: 'hidden', background: 'var(--ink-900)' } },
+      blobs.map(([c, s, x, y, d, k], i) => h('div', { key: i, style: {
+        position: 'absolute', left: x, top: y, width: s, height: s, borderRadius: '50%', background: c,
+        filter: 'blur(48px)', opacity: .95, animation: `sx-${k || 'a'} ${d}s ease-in-out ${-i * 2}s infinite alternate` } })));
+  }
+  renderVals() {
+    if (!this._cache) {
+      const h = React.createElement;
+      const tags = [['Chargebacks', 'Friendly fraud', 'Item not received', 'Refund abuse', 'Card testing'], ['First-party fraud', 'Reason codes', 'Account takeover', 'Serial disputers', 'Promo abuse'], ['Representment', 'Dispute rate', 'Stolen cards', 'Triangulation', 'Seller fraud']];
+      const pill = (t, i) => h('span', { key: i, style: { flex: 'none', padding: '9px 16px', borderRadius: 999, background: 'rgba(255,255,255,.92)', color: 'var(--ink-900)', fontSize: 15, fontWeight: 500, fontFamily: 'var(--font-sans)' } }, t);
+      this._cache = {
+        auroraHero: this.aurora([['var(--teal-500)', 360, '40%', '-30%', 14], ['var(--blue-500)', 300, '-25%', '-20%', 17, 'b'], ['var(--teal-300)', 180, '65%', '0%', 12, 'b'], ['var(--blue-900)', 360, '-10%', '55%', 19], ['var(--teal-900)', 260, '55%', '70%', 15, 'b']]),
+        auroraA: this.aurora([['var(--teal-400)', 300, '-20%', '40%', 13], ['var(--amber-300)', 200, '50%', '65%', 16, 'b'], ['var(--teal-700)', 260, '40%', '-10%', 18]]),
+        auroraB: this.aurora([['var(--blue-500)', 300, '-15%', '-10%', 15, 'b'], ['var(--teal-500)', 280, '45%', '45%', 12], ['var(--blue-300)', 180, '60%', '-5%', 17, 'b'], ['var(--teal-800)', 240, '-10%', '60%', 14]]),
+        auroraC: this.aurora([['var(--teal-300)', 260, '45%', '-15%', 14, 'b'], ['var(--blue-700)', 320, '-25%', '0%', 16], ['var(--teal-500)', 220, '-5%', '35%', 12, 'b']]),
+        auroraQuote: this.aurora([['var(--teal-500)', 380, '78%', '-60%', 16], ['var(--blue-700)', 380, '-10%', '30%', 19, 'b'], ['var(--teal-900)', 300, '35%', '40%', 14]]),
+        auroraCta: this.aurora([['var(--teal-500)', 340, '40%', '-45%', 15], ['var(--blue-500)', 300, '-35%', '-35%', 18, 'b'], ['var(--teal-900)', 300, '20%', '50%', 13, 'b'], ['var(--blue-900)', 300, '60%', '70%', 16]]),
+        marquee: tags.map((row, r) => h('div', { key: r, style: { display: 'flex', gap: 10, width: 'max-content', animation: `sx-marquee ${28 + r * 6}s linear infinite ${r % 2 ? 'reverse' : 'normal'}` } }, [...row, ...row, ...row, ...row].map(pill)))
+      };
+    }
+    const wide = this.state.w >= 760;
+    return {
+      ...this._cache,
+      rootRef: this.rootRef, wide, logoH: wide ? 34 : 28,
+      vectors: [
+        { label: 'Friendly fraud', value: '$861k', pct: '61%', color: 'var(--teal-500)' },
+        { label: 'Stolen card, card not present', value: '$254k', pct: '18%', color: 'var(--ink-300)' },
+        { label: 'Item not received', value: '$169k', pct: '12%', color: 'var(--ink-300)' },
+        { label: 'Processing errors', value: '$127k', pct: '9%', color: 'var(--ink-300)' }
+      ],
+      incident: [
+        { label: 'Day 0', title: 'Chargeback received' },
+        { label: 'Day 2', title: 'Evidence pack built' },
+        { label: 'Day 3', title: 'Representment filed' },
+        { label: 'Day 41', title: '$18,400 recovered' }
+      ],
+      principles: [
+        { title: 'Every finding has a number', body: 'Sized in dollars, with the data behind it.' },
+        { title: 'Customers aren\'t suspects', body: 'Approval rates are measured as closely as losses.' },
+        { title: 'Independent', body: 'No software to sell. No vendor commissions.' },
+        { title: 'Your data stays yours', body: 'Read-only access, deleted at close.' }
+      ],
+      services: [
+        { icon: 'search', eyebrow: '01 · Assess', title: 'Dispute assessment', time: '4 weeks · fixed fee', body: 'A review of your chargebacks, refunds and claims that separates real fraud from friendly fraud and errors, and shows what each costs a year.', gets: ['Every dispute sorted by reason code and root cause', 'Your dispute rate against card-scheme limits', 'Prioritised fix list and board-ready summary'] },
+        { icon: 'shield-check', eyebrow: '02 · Prevent', title: 'Dispute prevention', time: '6–12 weeks', body: 'Rules, checks and customer messaging that stop disputes before they are filed, built in your existing stack.', gets: ['Rules for serial disputers and first-party fraud', 'Clearer billing descriptors and delivery proof', 'Dashboards for dispute rate, win rate and approvals'] },
+        { icon: 'file-check', eyebrow: '03 · Respond', title: 'Dispute response', time: 'On demand', body: 'Build the evidence and processes to fight the disputes you should win, and accept the ones you shouldn\'t.', gets: ['Evidence templates for each reason code', 'Representment workflow for your team or processor', 'Win-rate tracking by reason code and card network'] },
+        { icon: 'compass', eyebrow: '04 · Advise', title: 'Ongoing advisory', time: 'Monthly retainer', body: 'A senior fraud and disputes lead on call for your team, without the full-time hire.', gets: ['Monthly dispute and loss review', 'Early warning before you near scheme limits', 'Sign-off on new products, markets and payment methods'] }
+      ],
+
+      steps: [
+        { num: '01', numColor: 'var(--ink-300)', title: 'Consultation', body: 'A 30-minute call on your disputes, losses and current controls.', when: 'Day 1' },
+        { num: '02', numColor: 'var(--ink-300)', title: 'Trace the disputes', body: 'Follow each dispute back to the order, account and control that let it through.', when: 'Weeks 1–2' },
+        { num: '03', numColor: 'var(--ink-300)', title: 'Fix at the source', body: 'Each gap sized in dollars and customer friction, then closed in order.', when: 'Weeks 3–6' },
+        { num: '04', numColor: 'var(--teal-600)', title: 'Hand over and monitor', body: 'Your team owns the rules, dashboards and playbooks. Monthly check-ins after.', when: 'Ongoing' }
+      ],
+      stats: [
+        { value: '−47%', label: 'average drop in dispute rate', rule: 'var(--teal-500)' },
+        { value: '2×', label: 'more disputes won after evidence rework', rule: 'var(--ink-900)' },
+        { value: '$214M', label: 'in fraud losses identified', rule: 'var(--ink-900)' },
+        { value: '99.2%', label: 'good-customer approval held', rule: 'var(--ink-900)' }
+      ],
+      industries: ['Payments', 'Neobanks', 'Lending', 'E-commerce', 'Marketplaces'],
+      next: [
+        { num: '01', title: 'Personal reply in 1 business day', body: 'With a few times that suit you.' },
+        { num: '02', title: '30-minute call', body: 'Your products, losses and current controls. No slides.' },
+        { num: '03', title: 'A one-page summary', body: 'Your biggest exposure and a next step, whether or not you go ahead.' }
+      ],
+      roles: ['Founder / CEO', 'Head of Risk', 'Head of Fraud', 'Operations lead', 'Payments lead', 'Other'],
+      concerns: ['Fraud disputes', 'Chargebacks', 'Friendly fraud', 'Refund abuse', 'Account takeover', 'Payment fraud', 'Not sure yet'].map(l => {
+        const on = l === this.state.concern;
+        return { label: l, pick: () => this.setState({ concern: l }), border: on ? '1px solid var(--ink-900)' : '1px solid var(--border-default)', bg: on ? 'var(--ink-900)' : 'var(--white)', color: on ? 'var(--ink-50)' : 'var(--text-body)' };
+      }),
+      notSent: !this.state.sent, sent: this.state.sent,
+      submit: e => { e.preventDefault(); this.setState({ sent: true }); },
+      reset: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
