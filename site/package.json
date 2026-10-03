@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "og-image": "node scripts/og-image.mjs"
   },
   "dependencies": {
     "@lucide/astro": "^1.48.0",
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "playwright-core": "~1.56.1",
     "typescript": "^6.0.3"
   }
 }
